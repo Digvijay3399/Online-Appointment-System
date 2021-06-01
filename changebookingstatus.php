@@ -1,6 +1,6 @@
 <html>
 <head>
-<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href=".css">
 <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
 </head><?php include "dbconfig.php"; ?>
 <style>
@@ -25,28 +25,23 @@ tr,td{
 }
 </style>
 
-<body style="background-image:url(mgrchange.jpg)">
+<body style="background-color:white">
 	<div class="header">
-		<ul>
-			<li style="float:left;border-right:none"><a href="ulogin.php" class="logo"><img src="../images/cal.png" width="30px" height="30px"><strong> Skylabs </strong>Appointment Booking System</a></li>
-			<li><a href="mgrmenu.php">Home</a></li>
-		</ul>
+		
 	</div>
 	<form action="changebookingstatus.php" method="post">
-	<div>
+	<div class="sucontainer">
 		
 	
-		<label style="font-size:20px"><b>Doctor:</b></label><br>
+		<label style="font-size:20px" >Doctor:</label><br>
 		<select name="doctor" id="doctor-list" class="demoInputBox" style="width:100%;height:35px;border-radius:9px">
 		<option value="">Select Doctor</option>
 		<?php
-		session_start();
-		$mid=$_SESSION['mgrid'];
-		$sql1="SELECT * FROM doctor where did in(select did from doctor_availability where cid in (select cid from manager_clinic where mid=$mid));";
+		$sql1="SELECT * FROM doctor";
          $results=$conn->query($sql1); 
 		while($rs=$results->fetch_assoc()) { 
 		?>
-		<option value="<?php echo $rs["did"]; ?>"><?php echo "Dr. ".$rs["name"]; ?></option>
+		<option value="<?php echo $rs["DID"]; ?>"><?php echo "Dr. ".$rs["Name"]; ?></option>
 		<?php
 		}
 		?>
@@ -59,6 +54,7 @@ tr,td{
 			<button type="submit" style="position:center" name="submit" value="Submit">Submit</button>
 			</form>
 <?php
+session_start();
 if(isset($_POST['submit']))
 {
 		

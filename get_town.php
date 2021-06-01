@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
 </head>
-<script type="text/javascript">//alert("sdfsd");</script>
+<script type="text/javascript"></script>
 <body>
 <?php
 require_once("dbconfig.php");
-	$query ="SELECT * FROM clinic WHERE Town = '" . $_POST["townid"] . "'";
+	$query ="SELECT * FROM clinic WHERE City = '" . $_POST["countryid"] . "'";
 	$results = $conn->query($query);
 ?>
-	<option value="">Select Clinic</option>
+	<option value="">Select Town</option>
 <?php
 	while($rs=$results->fetch_assoc()) {
 ?>
-	<option value="<?php echo $rs["cid"]; ?>"><?php echo $rs["name"]."-".$rs["town"]."(CID-".$rs["cid"].")"; ?></option>
+	<option value="<?php echo $rs["town"];?>"><?php echo $rs["town"]; ?></option>
 <?php
 
 }
